@@ -1,0 +1,39 @@
+[package]
+name = "smashline_hook"
+version = "1.0.0"
+authors = ["blu-dev <the.blu.dev@gmail.com>"]
+edition = "2018"
+
+[package.metadata.skyline]
+titleid = "01006A800016E000"
+
+[lib]
+crate-type = ["cdylib"]
+
+[[bin]]
+name = "smashline_hook"
+path = "src/main.rs"
+
+[dependencies]
+tokio = { version = "1.14.0", features = ["full"] }
+skyline = { git = "https://github.com/ultimate-research/skyline-rs.git", features = ["nro_internal"] }
+# skyline_smash = { path = "../skyline-smash", features = ["weak_l2cvalue"] }
+# skyline_smash = { git = "https://github.com/blu-dev/skyline-smash.git", branch = "l2c-values", features = ["weak_l2cvalue"] }
+skyline_smash = { git = "https://github.com/ultimate-research/skyline-smash.git", features = ["weak_l2cvalue"] }
+nnsdk = { git = "https://github.com/ultimate-research/nnsdk-rs" }
+parking_lot = { version = "0.11.1", features = ["nightly"] }
+lazy_static = "1.4.0"
+bitflags = "1.2.1"
+aarch64-decode = { git = "https://github.com/jam1garner/aarch64-decode.git", rev = "99475256e779677df456b3ec37de258d1697b97d" }
+paste = "1.0.5"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+lto = true
+
+[features]
+standalone = []
+development = ["standalone"]
